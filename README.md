@@ -95,6 +95,10 @@ For a well specced but free to use version of SqlServer we use the SqlServer2008
 * This file will end up in c:/vagrant/SQLEXPRADV_x64_ENU.exe on the vagrant box
 * Copy this to the c:/ then mount and run the install
 * Options to set true are: Database Engine Services, Full-Text Search, Management Tools Basic
+* Click on the Default instance option!
+* Select Mixed Mode security
+* A suitable password such as aSUITABLE-pword*88!
+
 
   
 #### Install Visual Studio  
