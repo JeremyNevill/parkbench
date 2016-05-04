@@ -12,6 +12,7 @@ Parkbench is used in conjunction with [Vagrant](https://www.vagrantup.com/downlo
 
 The main steps are:
 
+* Download a Windows RTM Image
 * Build a new Bare Windows OS Box
 * Upgrade the Bare Windows OS Box to include Sql Server and Visual Studio
 * Export the Windows + SqlServer Box + Visual Studio
@@ -19,19 +20,30 @@ The main steps are:
 
 ***
 
-
 ### Build a new Bare Windows OS Box
+
+if behind a firewall download a ISO RTM of windows
+
+ * [RTM Windows 2012](http://download.microsoft.com/download/6/2/A/62A76ABB-9990-4EFC-A4FE-C7D698DAEB96/9600.16384.WINBLUE_RTM.130821-1623_X64FRE_SERVER_EVAL_EN-US-IRM_SSS_X64FREE_EN-US_DV5.ISO)
 
 The first task to undertake is installing the prerequisites you will need to build and host your Windows box.  
 
 #### Install Prerequisites
 
-* [Vagrant](https://www.vagrantup.com/downloads.html) - Download and install
-* [VirtualBox](https://www.virtualbox.org/wiki/Downloads) - Download and install
-* [Packer](https://www.packer.io/downloads.html) - Download exe and add to path
-* [Packer Windows Repo](https://github.com/joefitzgerald/packer-windows) - Download or clone
-* [Parkbench Repo](https://github.com/JeremyNevill/parkbench) - Download or clone (this repo)
+* [Vagrant](https://www.vagrantup.com/downloads.html) - Download and install 
+  ~ launch vms from command line 
 
+* [VirtualBox](https://www.virtualbox.org/wiki/Downloads) - Download and install
+  ~ allows you to host virtual machines
+
+* [Packer](https://www.packer.io/downloads.html) - Download exe and add to path
+  ~ unattended execution to create a new barebones OS 
+
+* [Packer Windows Repo](https://github.com/joefitzgerald/packer-windows) - Download or clone
+ ~ unattended setup a windows machine
+
+* [Parkbench Repo](https://github.com/JeremyNevill/parkbench) - Download or clone (this repo)
+~ installs dev requirements using chocolatey
 
 #### Configure Packer-Windows
 
