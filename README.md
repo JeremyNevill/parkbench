@@ -122,4 +122,4 @@ To connect locally use the ```vagrant rdp``` command, to connect from a remote m
 yourmachineip:33389
 ```
 
-Any edits or errors please contact jeremy@nevill.net of add an issue to the repo! 
+Any edits or errors please submit a pull request or raise an issue.
