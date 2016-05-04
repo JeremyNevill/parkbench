@@ -22,10 +22,6 @@ The main steps are:
 
 ### Build a new Bare Windows OS Box
 
-if behind a firewall download a ISO RTM of windows
-
- * [RTM Windows 2012](http://download.microsoft.com/download/6/2/A/62A76ABB-9990-4EFC-A4FE-C7D698DAEB96/9600.16384.WINBLUE_RTM.130821-1623_X64FRE_SERVER_EVAL_EN-US-IRM_SSS_X64FREE_EN-US_DV5.ISO)
-
 The first task to undertake is installing the prerequisites you will need to build and host your Windows box.  
 
 #### Install Prerequisites
@@ -50,7 +46,9 @@ The first task to undertake is installing the prerequisites you will need to bui
 * Open the Packer-Windows folder in Visual Studio Code (or your favourite editor)
 * Edit the ```windows_2012_r2.json``` file and 
   * Remove the vmware-iso builder section
-  * OPTIONAL STEP: If you are unable to download the windows ISO as part of the packer build (try below) then download the windows iso manually and modify the iso_url reference to point to your downloaded windows iso, e.g.  ```"iso_url": "file:///C:/yourboxes/9600.16384.WINBLUE_RTM.130821-1623_X64FRE_SERVER_EVAL_EN-US-IRM_SSS_X64FREE_EN-US_DV5.ISO",```
+  * Optional Steps If you are behind a firewall
+    * If you are behind a firewall download an ISO RTM of windows from [RTM Windows 2012](http://download.microsoft.com/download/6/2/A/62A76ABB-9990-4EFC-A4FE-C7D698DAEB96/9600.16384.WINBLUE_RTM.130821-1623_X64FRE_SERVER_EVAL_EN-US-IRM_SSS_X64FREE_EN-US_DV5.ISO)
+    * Then modify the iso_url reference to point to your downloaded windows iso, e.g. ```"iso_url": "file:///C:/yourboxes/9600.16384.WINBLUE_RTM.130821-1623_X64FRE_SERVER_EVAL_EN-US-IRM_SSS_X64FREE_EN-US_DV5.ISO",```
 * Edit the ```answer_files\2012_r2\Autounattend.xml``` file and comment in/out the sections referring to windows updates... search for ```<!-- WITHOUT WINDOWS UPDATES -->```
 
 
