@@ -12,10 +12,9 @@ Parkbench is used in conjunction with [Vagrant](https://www.vagrantup.com/downlo
 
 The main steps are:
 
-* Download a Windows RTM Image
 * Build a new Bare Windows OS Box
 * Upgrade the Bare Windows OS Box to include Sql Server and Visual Studio
-* Export the Windows + SqlServer Box + Visual Studio
+* Package the new Windows + SqlServer + Visual Studio Box
 * ```vagrant up``` the new dev machine and start work!
 
 ***
@@ -28,39 +27,42 @@ The first task to undertake is installing the prerequisites you will need to bui
 
 * [Vagrant](https://www.vagrantup.com/downloads.html) - Download and install 
   ~ launch vms from command line 
-
 * [VirtualBox](https://www.virtualbox.org/wiki/Downloads) - Download and install
   ~ allows you to host virtual machines
-
 * [Packer](https://www.packer.io/downloads.html) - Download exe and add to path
   ~ unattended execution to create a new barebones OS 
-
 * [Packer Windows Repo](https://github.com/joefitzgerald/packer-windows) - Download or clone
  ~ unattended setup a windows machine
-
 * [Parkbench Repo](https://github.com/JeremyNevill/parkbench) - Download or clone (this repo)
 ~ installs dev requirements using chocolatey
 
 #### Configure Packer-Windows
 
-* Open the Packer-Windows folder in Visual Studio Code (or your favourite editor)
-* Edit the ```windows_2012_r2.json``` file and 
-  * Remove the vmware-iso builder section
-  * Optional Steps If you are behind a firewall
-    * If you are behind a firewall download an ISO RTM of windows from [RTM Windows 2012](http://download.microsoft.com/download/6/2/A/62A76ABB-9990-4EFC-A4FE-C7D698DAEB96/9600.16384.WINBLUE_RTM.130821-1623_X64FRE_SERVER_EVAL_EN-US-IRM_SSS_X64FREE_EN-US_DV5.ISO)
-    * Then modify the iso_url reference to point to your downloaded windows iso, e.g. ```"iso_url": "file:///C:/yourboxes/9600.16384.WINBLUE_RTM.130821-1623_X64FRE_SERVER_EVAL_EN-US-IRM_SSS_X64FREE_EN-US_DV5.ISO",```
-* Edit the ```answer_files\2012_r2\Autounattend.xml``` file and comment in/out the sections referring to windows updates... search for ```<!-- WITHOUT WINDOWS UPDATES -->```
+* Open the Packer-Windows folder you have created from [Packer Windows Repo](https://github.com/joefitzgerald/packer-windows) the in Visual Studio Code (or your favourite editor)
+
+##### Edit ```windows_2012_r2.json```
+* Remove the vmware-iso builder section
+* **Note**: If you are behind a firewall the autodownload of the windows iso may not work.  In this case you may need to download an ISO RTM of windows from [RTM Windows 2012](http://download.microsoft.com/download/6/2/A/62A76ABB-9990-4EFC-A4FE-C7D698DAEB96/9600.16384.WINBLUE_RTM.130821-1623_X64FRE_SERVER_EVAL_EN-US-IRM_SSS_X64FREE_EN-US_DV5.ISO)
+  * Then modify the iso_url reference to point to your downloaded windows iso, e.g. ```"iso_url": "file:///C:/yourboxes/9600.16384.WINBLUE_RTM.130821-1623_X64FRE_SERVER_EVAL_EN-US-IRM_SSS_X64FREE_EN-US_DV5.ISO",```
+
+##### Edit  ```answer_files\2012_r2\Autounattend.xml``` 
+* Comment in/out the sections referring to windows updates... search for ```<!-- WITHOUT WINDOWS UPDATES -->```
 
 
 #### Run Packer
 
-Now run packer using the windows_2012_r2.json config:
+Packer is used to create the initial vagrant box file from the windows iso.  It takes the windows iso, spins up a new virtual box machine using the iso, installs windows and configures a number of windows settings.
+
+Run packer using the windows_2012_r2.json config:
 
 ```
 packer build windows_2012_r2.json
 ```
 
 This will take 20-40 minutes and result in a new Bare Windows OS Box availabe for the next steps in the process!
+The vagrant box file is generated in the packer-windows folder and named windows_2012_r2.box.
+
+After generation move this file to a suitable location of your choice such as c:\boxes. 
 
 *** 
 
@@ -71,8 +73,7 @@ This will take 20-40 minutes and result in a new Bare Windows OS Box availabe fo
 
 With the Bare Windows OS Box available we now jump into the Parkbench folder to start using Vagrant.
 
-* From the bash command prompt
-  * ```cd c:/dev/parkbench```
+* Cd into the Parkbench folder you have setup from the [Parkbench Repo](https://github.com/JeremyNevill/parkbench)
 * Modify the ```Vagrantfile`` to point to the new modified box, e.g.
   * ```config.vm.box = "../boxes/win2012bare.box"``
 * Start the virtual machine
