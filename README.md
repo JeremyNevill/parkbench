@@ -1,5 +1,7 @@
 # Parkbench
 
+[![Join the chat at https://gitter.im/bartleyrob/parkbench](https://badges.gitter.im/bartleyrob/parkbench.svg)](https://gitter.im/bartleyrob/parkbench?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 Parkbench is a concise Vagrantfile repo for creating a virtual Windows 2012 r2 .NET Dev Machine using Virtualbox.
 
 Parkbench is used in conjunction with [Vagrant](https://www.vagrantup.com/downloads.html), 
